@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { $, env } from "bun";
 import { Command } from "commander";
 import z from "zod";
-import thisPackage from "./package.json";
+import thisPackage from "../package.json";
 
 // CLI Configuration
 const program = new Command();
