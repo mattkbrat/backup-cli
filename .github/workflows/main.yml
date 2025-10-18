@@ -1,0 +1,57 @@
+# This creates a new release with bun
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+      - name: biome check src/*
+        working-directory: .
+        run: bun biome check
+      - name: bun lint src/*
+        working-directory: .
+        run: bun run lint
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: install
+        working-directory: .
+        run: bun i
+      - name: bun check
+        working-directory: .
+        run: bun run check
+      - name: bun lint
+        working-directory: .
+        run: bun run lint
+      - name: Build project
+        run: bun build
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        run: bun run build
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
+          assets: ./dist/*.js # Path to your built assets
