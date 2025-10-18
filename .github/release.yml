@@ -1,0 +1,75 @@
+# GitHub Release Configuration
+# This file configures how GitHub generates release notes automatically
+
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - skip-changelog
+      - dependencies
+    authors:
+      - dependabot
+      - github-actions[bot]
+
+  categories:
+    - title: 🚨 Breaking Changes
+      labels:
+        - breaking-change
+        - breaking
+
+    - title: 🎉 New Features
+      labels:
+        - enhancement
+        - feature
+        - feat
+
+    - title: 🐛 Bug Fixes
+      labels:
+        - bug
+        - bugfix
+        - fix
+
+    - title: 🚀 Performance Improvements
+      labels:
+        - performance
+        - optimization
+        - perf
+
+    - title: 📚 Documentation
+      labels:
+        - documentation
+        - docs
+
+    - title: 🧪 Testing
+      labels:
+        - test
+        - testing
+        - tests
+
+    - title: 🔧 Maintenance
+      labels:
+        - maintenance
+        - chore
+        - refactor
+        - refactoring
+
+    - title: 🔒 Security
+      labels:
+        - security
+        - vulnerability
+
+    - title: 📦 Dependencies
+      labels:
+        - dependencies
+        - deps
+
+    - title: 🎨 Style & UI
+      labels:
+        - style
+        - ui
+        - ux
+        - design
+
+    - title: Other Changes
+      labels:
+        - "*"
