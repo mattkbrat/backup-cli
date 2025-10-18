@@ -39,7 +39,6 @@ This workflow runs quality checks on every code change:
 - ✅ Dependency caching for improved performance
 - ✅ Multi-OS build matrix (Ubuntu, macOS, Windows)
 - ✅ Security vulnerability scanning
-- ✅ Detailed CI summary report
 
 ## Usage
 
