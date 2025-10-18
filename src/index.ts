@@ -11,10 +11,10 @@ import { zipAndClean } from "./zip";
 // Helper function for verbose logging
 
 if (options.verbose) {
-	log.verbose("Parsed configuration:");
-	log.verbose(JSON.stringify(config, null, 2));
-	log.verbose(`Encryption key: ${ENCRYPTION_KEY ? "SET" : "NOT SET"}`);
-	log.verbose(`Output directory: ${options.output}`);
+  log.verbose("Parsed configuration:");
+  log.verbose(JSON.stringify(config, null, 2));
+  log.verbose(`Encryption key: ${ENCRYPTION_KEY ? "SET" : "NOT SET"}`);
+  log.verbose(`Output directory: ${options.output}`);
 }
 
 // Get current date in sortable ISO format
@@ -22,27 +22,27 @@ if (options.verbose) {
 log.verbose(`Temporary directory: ${TEMP_DIR}`);
 
 if (!options.dryRun) {
-	await mkdir(OUTPUT_DIR, { recursive: true });
-	await mkdir(TEMP_DIR, { recursive: true });
-	log.verbose("Created directories");
+  await mkdir(OUTPUT_DIR, { recursive: true });
+  await mkdir(TEMP_DIR, { recursive: true });
+  log.verbose("Created directories");
 }
 
 // Main execution
 log.info("🚀 Starting backup process...\n");
 
 try {
-	await handlePostgres();
+  await handlePostgres();
 
-	if (!options.dryRun) {
-		await zipAndClean();
-	}
+  if (!options.dryRun) {
+    await zipAndClean();
+  }
 
-	log.info("\n✅ Backup process completed successfully!");
-	if (!options.dryRun) {
-		log.info(`📁 Backups stored in: ${OUTPUT_DIR}`);
-	}
+  log.info("\n✅ Backup process completed successfully!");
+  if (!options.dryRun) {
+    log.info(`📁 Backups stored in: ${OUTPUT_DIR}`);
+  }
 } catch (error) {
-	log.error("\n❌ Backup process failed!");
-	log.error(error);
-	process.exit(1);
+  log.error("\n❌ Backup process failed!");
+  log.error(error);
+  process.exit(1);
 }
