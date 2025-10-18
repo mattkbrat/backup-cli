@@ -1,5 +1,6 @@
 {
   "name": "backup",
+  "version": "1.0.0",
   "module": "index.ts",
   "type": "module",
   "private": true,
@@ -7,12 +8,15 @@
     "@types/bun": "latest"
   },
   "scripts": {
-    "test": "dotenvx run -- bun run index.ts"
+    "test": "dotenvx run -- bun run index.ts",
+    "build": "bun build index.ts --target=bun --outfile=dist/out.js",
+    "run": "bun dist/out.js"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
+    "commander": "^12.0.0",
     "zod": "^4.1.12"
   }
 }

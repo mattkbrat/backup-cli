@@ -1,6 +1,0 @@
-[backup]
-[backup.postgres]
-[backup.postgres.cameras]
-container = "cameras-postgres-dev"
-[backup.postgres.users]
-container = "users-postgres-dev"

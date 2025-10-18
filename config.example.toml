@@ -1,0 +1,52 @@
+# Backup Configuration Example
+# Copy this file to config.toml and modify according to your setup
+
+OUTPUT_DIR = "./exports"
+
+[backup]
+# PostgreSQL database backups configuration
+[backup.postgres]
+
+# Example 1: Basic configuration with defaults
+[backup.postgres.app_database]
+container = "app-postgres"
+# database = "postgres"  # Optional, defaults to "postgres"
+# user = "postgres"      # Optional, defaults to "postgres"
+# enabled = true         # Optional, defaults to true
+
+# Example 2: Custom database and user
+[backup.postgres.user_service]
+container = "users-postgres-prod"
+database = "users_db"
+user = "app_user"
+
+# Example 3: Multiple databases in different containers
+[backup.postgres.analytics]
+container = "analytics-postgres"
+database = "analytics"
+user = "analytics_admin"
+
+[backup.postgres.inventory]
+container = "inventory-postgres"
+database = "inventory_prod"
+user = "inventory_user"
+
+# Example 4: Temporarily disabled backup
+[backup.postgres.legacy_system]
+container = "legacy-postgres"
+database = "legacy_db"
+user = "legacy_user"
+enabled = false  # This backup will be skipped
+
+# Example 5: Development environment
+[backup.postgres.dev_db]
+container = "postgres-dev"
+database = "development"
+user = "dev_user"
+
+# Notes:
+# - Container names must match your Docker container names exactly
+# - Use 'docker ps' to list running containers
+# - If authentication fails, the script will retry with 'postgres' user
+# - All postgres backups are compressed using Zstandard compression
+# - Set ENCRYPTION_KEY environment variable to encrypt the final ZIP file
