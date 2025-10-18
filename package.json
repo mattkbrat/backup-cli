@@ -8,7 +8,7 @@
     "@types/bun": "latest"
   },
   "scripts": {
-    "test": "dotenvx run -- bun run index.ts",
+    "test": "dotenvx run -- bun run src/index.ts",
     "build": "bun build index.ts --target=bun --outfile=dist/out.js",
     "run": "bun dist/out.js"
   },
